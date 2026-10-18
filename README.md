@@ -1,6 +1,11 @@
 # Home-SOC-Lab
+A self-built Security Operations Center lab. I deployed a SIEM (Wazuh), connected endpoint agents, ran MITRE ATT&CK-mapped attack simulations with Atomic Red Team, and documented what was detected, what was blocked, and what was missed.
+
+Status: In progress. This README is updated as each phase is completed. See Roadmap.
+
 Project Summary
-I built this lab to get hands-on experience across the full detection lifecycle: standing up a SIEM, generating realistic attack traffic in a controlled environment, triaging the resulting alerts, and writing custom detection rules where out-of-the-box coverage fell short. The goal was to simulate the actual workflow of a SOC analyst and security engineer rather than just reading about one.
+
+I built this lab to get hands-on experience with the detection lifecycle: standing up a SIEM, generating controlled attack activity, triaging the resulting alerts, and writing up findings the way I would in a SOC. Everything runs in VirtualBox on an isolated network, and nothing is exposed to the internet.
 
 Tools Used
 VirtualBox	Virtualization / lab hosting
