@@ -10,7 +10,7 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 
 ## Lab Architecture
 
-![Lab Architecture](diagrams/architecture.png)
+(In progress)
 
 | Machine | Role | OS | Status |
 |---|---|---|---|
