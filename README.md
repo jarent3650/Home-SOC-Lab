@@ -68,7 +68,7 @@ Problems I hit and how I resolved them:
 - [x] Windows endpoint with active Wazuh agent
 - [x] Atomic Red Team installed and tested
 - [x] First end-to-end detection (T1136.001)
-- [ ] Linux endpoint with agent
+- [x] Linux endpoint with agent
 - [ ] SSH brute-force detection from Kali (T1110)
 - [ ] Install Sysmon on Windows for richer telemetry
 - [ ] Write a custom Wazuh rule for a detection gap
