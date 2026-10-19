@@ -16,7 +16,7 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 |---|---|---|---|
 | Wazuh Manager | SIEM / alerting / dashboard | Wazuh OVA (Linux) | Running |
 | Windows-Victim | Monitored endpoint, attack target | Windows 11 Enterprise Evaluation | Wazuh agent active |
-| Ubuntu-Victim | Monitored Linux endpoint, SSH target | Ubuntu Server | [Wazuh agent active |
+| Ubuntu-Victim | Monitored Linux endpoint, SSH target | Ubuntu Server | Wazuh agent active |
 | Kali Linux | Attacker machine | Kali Linux | Reachable for victim |
 
 **Networking:** All VMs share a VirtualBox Host-Only network (isolated from my home network). The Windows VM has a second NAT adapter used only to download tools; lab traffic runs over the Host-Only adapter.
