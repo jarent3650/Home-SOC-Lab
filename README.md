@@ -38,8 +38,8 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 | MITRE ATT&CK ID | Technique | Result | Report |
 |---|---|---|---|
 | T1136.001 | Create Local Account (test 4, via command prompt) | Detected by Wazuh (Windows event 4720) | [Report](reports/T1136.001-create-account.md) |
-| T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | [Report](reports/T1059.001-mimikatz-blocked.md) |
-| T1082 | System Information Discovery (full test set) | Mostly executed; Defender blocked one script; several sub-tests failed on missing prerequisites or deprecated tools (e.g. `wmic`) | [Report](reports/T1082-system-discovery.md) |
+| T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | Planned |
+| T1082 | System Information Discovery (full test set) | Mostly executed; Defender blocked one script; several sub-tests failed on missing prerequisites or deprecated tools (e.g. `wmic`) | Planned |
 | T1136.001 | Create admin user (test 8) | Planned | |
 | T1110 | Brute Force (SSH, Kali to Ubuntu) | Planned | |
 
