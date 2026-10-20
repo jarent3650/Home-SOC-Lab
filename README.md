@@ -10,14 +10,12 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 
 ## Lab Architecture
 
-(In progress)
-
 | Machine | Role | OS | Status |
 |---|---|---|---|
 | Wazuh Manager | SIEM / alerting / dashboard | Wazuh OVA (Linux) | Running |
 | Windows-Victim | Monitored endpoint, attack target | Windows 11 Enterprise Evaluation | Wazuh agent active |
 | Ubuntu-Victim | Monitored Linux endpoint, SSH target | Ubuntu Server | Wazuh agent active |
-| Kali Linux | Attacker machine | Kali Linux | Reachable for victim |
+| Kali Linux | Attacker machine | Kali Linux | Attacker, reachable from the victim VMs |
 
 **Networking:** All VMs share a VirtualBox Host-Only network (isolated from my home network). The Windows VM has a second NAT adapter used only to download tools; lab traffic runs over the Host-Only adapter.
 
@@ -40,7 +38,7 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 | T1136.001 | Create Local Account (test 4, via command prompt) | Detected by Wazuh (Windows event 4720) | [Report](reports/T1136.001-create-account.md) |
 | T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | Planned |
 | T1082 | System Information Discovery (full test set) | Mostly executed; Defender blocked one script; several sub-tests failed on missing prerequisites or deprecated tools (e.g. `wmic`) | Planned |
-| T1110 | Brute Force (SSH, Kali to Ubuntu) | Planned | |
+| T1110 | Brute Force (SSH, Kali to Ubuntu) | Planned | Planned |
 
 Each report covers what was run, the evidence (alerts and screenshots), my severity assessment, and recommended response.
 
@@ -49,6 +47,16 @@ Each report covers what was run, the evidence (alerts and screenshots), my sever
 - **Layered defense is visible.** Defender stopped Mimikatz outright, while a low-noise action like creating a local account was allowed to run and had to be caught by the SIEM. Prevention and detection cover different things.
 - **Running every sub-test is noisy.** `Invoke-AtomicTest` without `-TestNumbers` ran dozens of variants of T1082. Targeting individual tests gives cleaner evidence and clearer alert-to-action mapping.
 - **Detection depends on log sources.** Wazuh alerts only on what Windows logs by default, which motivates adding Sysmon (see Roadmap).
+
+## Detection Gaps
+
+Tracking where the SIEM did not give the visibility I expected. Each gap feeds a roadmap item.
+
+| Gap | Cause | Planned fix |
+|---|---|---|
+| Limited endpoint telemetry beyond default Windows logging | Wazuh only sees what Windows logs by default | Install Sysmon on Windows |
+| T1082 coverage not yet assessed | Full test set was run, but alert-to-test mapping is still to be done | Re-run individual tests with `-TestNumbers` and record which ones alert |
+| No custom detection logic yet | Relying on Wazuh's default ruleset | Write a custom Wazuh rule for a confirmed gap |
 
 ## Troubleshooting & Lessons Learned
 
@@ -80,13 +88,12 @@ Problems I hit and how I resolved them:
 ## Repo Structure
 
 ```
-soc-home-lab/
+Home-SOC-Lab/
 ├── README.md
-├── diagrams/
-│   └── architecture.png
+├── diagram/                              (architecture diagram)
 ├── screenshots/
 ├── reports/
 │   ├── T1136.001-create-account.md
-│   ├── T1059.001-mimikatz-blocked.md
-│   └── T1082-system-discovery.md
-└── rules/            (added once custom rules exist)
+│   ├── T1059.001-mimikatz-blocked.md     (planned)
+│   └── T1082-system-discovery.md         (planned)
+└── rules/                                (added once custom rules exist)
