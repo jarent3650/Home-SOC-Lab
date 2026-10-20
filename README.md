@@ -40,7 +40,6 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 | T1136.001 | Create Local Account (test 4, via command prompt) | Detected by Wazuh (Windows event 4720) | [Report](reports/T1136.001-create-account.md) |
 | T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | Planned |
 | T1082 | System Information Discovery (full test set) | Mostly executed; Defender blocked one script; several sub-tests failed on missing prerequisites or deprecated tools (e.g. `wmic`) | Planned |
-| T1136.001 | Create admin user (test 8) | Planned | |
 | T1110 | Brute Force (SSH, Kali to Ubuntu) | Planned | |
 
 Each report covers what was run, the evidence (alerts and screenshots), my severity assessment, and recommended response.
