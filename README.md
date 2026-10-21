@@ -36,9 +36,10 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 | MITRE ATT&CK ID | Technique | Result | Report |
 |---|---|---|---|
 | T1136.001 | Create Local Account (test 4, via command prompt) | Detected by Wazuh (Windows event 4720) | [Report](reports/T1136.001-create-account.md) |
-| T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | [Report](reports/T1110-brute-force-attack.md) |
+| T1110 | Brute Force (SSH, Kali to Ubuntu) | Planned | [Report](reports/T1110-brute-force-attack.md) |
+| T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | Planned |
 | T1082 | System Information Discovery (full test set) | Mostly executed; Defender blocked one script; several sub-tests failed on missing prerequisites or deprecated tools (e.g. `wmic`) | Planned |
-| T1110 | Brute Force (SSH, Kali to Ubuntu) | Planned | Planned |
+
 
 Each report covers what was run, the evidence (alerts and screenshots), my severity assessment, and recommended response.
 
