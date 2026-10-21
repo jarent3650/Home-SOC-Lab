@@ -59,6 +59,7 @@ Problems I hit and how I resolved them:
 - **Atomic Red Team commands "not recognized."** The module has to be re-imported in each new PowerShell session.
 - **Wazuh dashboard API error (HTTP 500).** The manager daemons were running, but systemd had marked the service failed after a slow startup (clock-source warnings suggested CPU starvation on the VM). Verified daemons with `wazuh-control status`, cleared the failed state, confirmed the API responded, and restarted the dashboard.
 - **Agent not visible in Wazuh.** Verified agent installation/service state and manager connectivity, then re-ran the test once the agent showed Active.
+- First brute-force run produced no alerts. Wazuh manager had failed/timed out (confirmed via wazuh-control status) at the time of the attack. Added a pre-test check: confirm wazuh-control status shows all daemons running before starting any simulation.
 
 ## Roadmap
 
