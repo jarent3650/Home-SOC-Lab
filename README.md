@@ -48,16 +48,6 @@ Each report covers what was run, the evidence (alerts and screenshots), my sever
 - **Running every sub-test is noisy.** `Invoke-AtomicTest` without `-TestNumbers` ran dozens of variants of T1082. Targeting individual tests gives cleaner evidence and clearer alert-to-action mapping.
 - **Detection depends on log sources.** Wazuh alerts only on what Windows logs by default, which motivates adding Sysmon (see Roadmap).
 
-## Detection Gaps
-
-Tracking where the SIEM did not give the visibility I expected. Each gap feeds a roadmap item.
-
-| Gap | Cause | Planned fix |
-|---|---|---|
-| Limited endpoint telemetry beyond default Windows logging | Wazuh only sees what Windows logs by default | Install Sysmon on Windows |
-| T1082 coverage not yet assessed | Full test set was run, but alert-to-test mapping is still to be done | Re-run individual tests with `-TestNumbers` and record which ones alert |
-| No custom detection logic yet | Relying on Wazuh's default ruleset | Write a custom Wazuh rule for a confirmed gap |
-
 ## Troubleshooting & Lessons Learned
 
 Problems I hit and how I resolved them:
