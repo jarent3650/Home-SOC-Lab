@@ -37,7 +37,7 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 |---|---|---|---|
 | T1136.001 | Create Local Account (test 4, via command prompt) | Detected by Wazuh (Windows event 4720) | [Report](reports/T1136.001-create-account.md) |
 | T1110 | Brute Force (SSH, Kali to Ubuntu) | Detected by Wazuh: rules 5763 and 40112, level 10 and 12 (failed logins correlated to successful login) | [Report](reports/T1110-brute-force-attack.md) |
-| T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | Planned |
+| T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | [Report](reports/T1059.001-powershell-mimikatz.md) |
 | T1082 | System Information Discovery (full test set) | Mostly executed; Defender blocked one script; several sub-tests failed on missing prerequisites or deprecated tools (e.g. `wmic`) | Planned |
 
 
@@ -48,6 +48,7 @@ Each report covers what was run, the evidence (alerts and screenshots), my sever
 - **Layered defense is visible.** Defender stopped Mimikatz outright, while a low-noise action like creating a local account was allowed to run and had to be caught by the SIEM. Prevention and detection cover different things.
 - **Running every sub-test is noisy.** `Invoke-AtomicTest` without `-TestNumbers` ran dozens of variants of T1082. Targeting individual tests gives cleaner evidence and clearer alert-to-action mapping.
 - **Detection depends on log sources.** Wazuh alerts only on what Windows logs by default, which motivates adding Sysmon (see Roadmap).
+- **Prevention can be invisible to the SIEM.** Defender fully blocked a credential-dumping attempt (Mimikatz) with a "Severe" rating, but Wazuh showed zero alerts, because the Defender Operational log wasn't a monitored source. The strongest layer of defense was also the least visible one.
 
 ## Troubleshooting & Lessons Learned
 
