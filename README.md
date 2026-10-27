@@ -38,7 +38,7 @@ I built this lab to get hands-on experience with the detection lifecycle: standi
 | T1136.001 | Create Local Account (test 4, via command prompt) | Detected by Wazuh (Windows event 4720) | [Report](reports/T1136.001-create-account.md) |
 | T1110 | Brute Force (SSH, Kali to Ubuntu) | Detected by Wazuh: rules 5763 and 40112, level 10 and 12 (failed logins correlated to successful login) | [Report](reports/T1110-brute-force-attack.md) |
 | T1059.001 | PowerShell: Mimikatz (test 1) | **Prevented**: Windows Defender blocked execution before it ran | [Report](reports/T1059.001-powershell-mimkatz.md) |
-| T1082 | System Information Discovery (full test set) | Mostly executed; Defender blocked one script; several sub-tests failed on missing prerequisites or deprecated tools (e.g. `wmic`) | Planned |
+| T1082 | System Information Discovery (14 of 24 sub-tests) | 0 of 14 tests generated a Wazuh alert; all require process-level logging Wazuh doesn't currently collect | [Report](reports/T1082-system-discovery.md) |
 
 
 Each report covers what was run, the evidence (alerts and screenshots), my severity assessment, and recommended response.
@@ -49,6 +49,7 @@ Each report covers what was run, the evidence (alerts and screenshots), my sever
 - **Running every sub-test is noisy.** `Invoke-AtomicTest` without `-TestNumbers` ran dozens of variants of T1082. Targeting individual tests gives cleaner evidence and clearer alert-to-action mapping.
 - **Detection depends on log sources.** Wazuh alerts only on what Windows logs by default, which motivates adding Sysmon (see Roadmap).
 - **Prevention can be invisible to the SIEM.** Defender fully blocked a credential-dumping attempt (Mimikatz) with a "Severe" rating, but Wazuh showed zero alerts, because the Defender Operational log wasn't a monitored source. The strongest layer of defense was also the least visible one.
+- **Discovery techniques are largely invisible without enhanced logging.** All 14 tested T1082 sub-techniques went undetected. This is the clearest evidence yet for why Sysmon is the next roadmap priority — without it, an attacker's initial recon phase leaves no trace in Wazuh.
 
 ## Troubleshooting & Lessons Learned
 
