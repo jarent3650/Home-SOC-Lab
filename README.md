@@ -2,7 +2,7 @@
 
 A self-built Security Operations Center lab. I deployed a SIEM (Wazuh), connected endpoint agents, ran MITRE ATT&CK-mapped attack simulations with Atomic Red Team, and documented what was detected, what was blocked, and what was missed.
 
-**Status:** In progress. This README is updated as each phase is completed. See [Roadmap](#roadmap).
+**Status:** In progress. This README is updated as each phase is completed.
 
 ## Project Summary
 
