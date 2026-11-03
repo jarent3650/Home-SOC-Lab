@@ -81,16 +81,3 @@ Problems I hit and how I resolved them:
 ## Skills Demonstrated
 
 `SIEM deployment (Wazuh)` `Endpoint agent deployment` `Log analysis` `MITRE ATT&CK mapping` `Incident documentation` `Windows & Linux administration` `VirtualBox networking` `Troubleshooting & root-cause analysis`
-
-## Repo Structure
-
-```
-Home-SOC-Lab/
-├── README.md
-├── diagram/                              (architecture diagram)
-├── screenshots/
-├── reports/
-│   ├── T1136.001-create-account.md
-│   ├── T1059.001-mimikatz-blocked.md     (planned)
-│   └── T1082-system-discovery.md         (planned)
-└── rules/                                (added once custom rules exist)
