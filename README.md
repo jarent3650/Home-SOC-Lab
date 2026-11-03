@@ -54,6 +54,16 @@ Each report covers what was run, the evidence (alerts and screenshots), my sever
   detected without Sysmon, versus 4 of 4 detected in a sample re-run after installing it — 
   direct evidence for why process-creation logging matters.
 
+  ## Detection Gaps
+
+Tracking where the SIEM did not give the visibility I expected. Each gap feeds a roadmap item.
+
+| Gap | Cause | Status |
+|---|---|---|
+| Zero visibility into T1082 discovery commands (reg query, wmic, hostname, etc.) | These commands don't generate Windows Security events by default — no process-level logging | **Resolved.** Installed Sysmon (SwiftOnSecurity config) and added it as a Wazuh log source. A before/after test showed 0 of 14 sub-techniques detected without Sysmon vs. 4 of 4 detected in a sample re-run after. |
+| No visibility into Windows Defender preventions | Defender blocked and removed Mimikatz (T1059.001), but the detection event lives in the Defender Operational log, which Wazuh wasn't collecting | Not yet fixed. Add `Microsoft-Windows-Windows Defender/Operational` as an eventchannel localfile source, then re-test to confirm Wazuh alerts on event ID 1117. |
+| Wazuh maps local account creation to "Account Manipulation," not T1136.001 | Default rule 60109 ties to a broader MITRE technique than the one actually tested | Candidate for a custom Wazuh rule (next roadmap item) |
+
 ## Troubleshooting & Lessons Learned
 
 Problems I hit and how I resolved them:
