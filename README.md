@@ -50,6 +50,9 @@ Each report covers what was run, the evidence (alerts and screenshots), my sever
 - **Detection depends on log sources.** Wazuh alerts only on what Windows logs by default, which motivates adding Sysmon (see Roadmap).
 - **Prevention can be invisible to the SIEM.** Defender fully blocked a credential-dumping attempt (Mimikatz) with a "Severe" rating, but Wazuh showed zero alerts, because the Defender Operational log wasn't a monitored source. The strongest layer of defense was also the least visible one.
 - **Discovery techniques are largely invisible without enhanced logging.** All 14 tested T1082 sub-techniques went undetected. This is the clearest evidence yet for why Sysmon is the next roadmap priority — without it, an attacker's initial recon phase leaves no trace in Wazuh.
+- **Sysmon closed the T1082 visibility gap.** A before/after test showed 0 of 14 sub-techniques 
+  detected without Sysmon, versus 4 of 4 detected in a sample re-run after installing it — 
+  direct evidence for why process-creation logging matters.
 
 ## Troubleshooting & Lessons Learned
 
@@ -71,7 +74,7 @@ Problems I hit and how I resolved them:
 - [x] First end-to-end detection (T1136.001)
 - [x] Linux endpoint with agent
 - [x] SSH brute-force detection from Kali (T1110)
-- [ ] Install Sysmon on Windows for richer telemetry
+- [x] Install Sysmon on Windows for richer telemetry
 - [ ] Write a custom Wazuh rule for a detection gap
 - [ ] Python script to pull alerts via the Wazuh API into a daily summary
 
